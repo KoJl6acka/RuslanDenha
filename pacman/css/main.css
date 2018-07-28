@@ -1,0 +1,256 @@
+@font-face {
+  font-family: "pixelmix";
+  src: url("../fonts/pixelmix.ttf"); }
+body, html {
+  padding: 0;
+  margin: 0;
+  background-color: #000; }
+  body .pacman, html .pacman {
+    display: block;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #F8F921;
+    top: 540px;
+    left: 300px;
+    position: absolute;
+    overflow: hidden;
+    box-sizing: border-box;
+    border: 2px solid #000;
+    z-index: 2; }
+    body .pacman:before, html .pacman:before {
+      content: "";
+      display: block;
+      position: absolute;
+      left: 12px;
+      top: 7.5px;
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background-color: black; }
+    body .pacman:after, html .pacman:after {
+      content: "";
+      display: block;
+      position: absolute;
+      box-sizing: border-box;
+      top: -15px;
+      left: -15px;
+      width: 0;
+      height: 0;
+      border: 30px solid transparent;
+      border-right: 30px solid #000;
+      z-index: 4;
+      animation: om-nom-nom 0.3s linear alternate infinite; }
+  body .pacman_left:before, html .pacman_left:before {
+    left: auto;
+    right: 12px; }
+  body .pacman_left:after, html .pacman_left:after {
+    border: 30px solid transparent;
+    border-left: 30px solid #000; }
+  body .pacman_top:before, html .pacman_top:before {
+    left: auto;
+    right: 7.5px;
+    top: auto;
+    bottom: 12px; }
+  body .pacman_top:after, html .pacman_top:after {
+    border: 30px solid transparent;
+    border-top: 30px solid #000;
+    animation: om-nom-nom_top 0.3s linear alternate infinite; }
+  body .pacman_bottom:before, html .pacman_bottom:before {
+    left: auto;
+    right: 7.5px;
+    top: 12px; }
+  body .pacman_bottom:after, html .pacman_bottom:after {
+    border: 30px solid transparent;
+    border-bottom: 30px solid #000;
+    animation: om-nom-nom_top 0.3s linear alternate infinite; }
+
+@keyframes om-nom-nom {
+  0% {
+    border-top: 30px solid transparent;
+    border-bottom: 30px solid transparent;
+    top: -15px; }
+  100% {
+    border-top: 0 solid transparent;
+    border-bottom: 0 solid transparent;
+    top: 50%; } }
+@keyframes om-nom-nom_top {
+  0% {
+    border-left: 30px solid transparent;
+    border-right: 30px solid transparent;
+    left: -15px; }
+  100% {
+    border-left: 0 solid transparent;
+    border-right: 0 solid transparent;
+    left: 50%; } }
+.wall {
+  display: block;
+  float: left;
+  height: 30px;
+  width: 30px;
+  box-sizing: border-box;
+  background-color: #413e8d;
+  border: 2px solid #010d49; }
+
+.ground {
+  display: block;
+  float: left;
+  height: 30px;
+  width: 30px;
+  background-color: #000; }
+
+.apple {
+  display: block;
+  float: left;
+  height: 30px;
+  width: 30px;
+  background-color: rgba(0, 0, 0, 0);
+  position: relative;
+  animation: appleAnimation 2s infinite; }
+  .apple:before {
+    content: "";
+    position: absolute;
+    display: block;
+    box-sizing: border-box;
+    background-color: #4cff2c;
+    height: 3px;
+    width: 3px;
+    border-radius: 50%;
+    top: 18px;
+    left: 12px;
+    box-shadow: 3px 0 0 0 #4cff2c, 1.5px -3.3px 0 3px #4cff2c; }
+  .apple:after {
+    content: "";
+    position: absolute;
+    display: block;
+    box-sizing: border-box;
+    background-color: #077300;
+    height: 7.5px;
+    width: 3px;
+    border-radius: 50%;
+    top: 7.5px;
+    left: 11.1px;
+    transform: rotate(-60deg); }
+
+@keyframes appleAnimation {
+  0%,
+100% {
+    top: 3px; }
+  50% {
+    top: -3px; } }
+.ghost {
+  display: block;
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background-color: rgba(0, 0, 0, 0);
+  float: left; }
+  .ghost:before {
+    content: "";
+    position: absolute;
+    display: block;
+    box-sizing: border-box;
+    background-color: #ff0a5c;
+    height: 6px;
+    width: 6px;
+    border-radius: 50%;
+    top: 19.5px;
+    left: 12px;
+    box-shadow: -3px -10.5px 0 -2.1px #000, 3px -10.5px 0 -2.1px #000, -3px -10.5px 0 0 #fff, 3px -10.5px 0 0 #fff, 6px 0 0 0 #ff0a5c, -6px 0 0 0 #ff0a5c, 0 -9px 0 7.5px #ff0a5c;
+    animation: ghost 3s infinite;
+    z-index: 9; }
+  .ghost:after {
+    content: "";
+    position: absolute;
+    display: block;
+    background-color: rgba(0, 0, 0, 0);
+    height: 4.5px;
+    width: 4.8px;
+    border-radius: 50%;
+    border-bottom: 1.5px solid #000;
+    top: 13.5px;
+    left: 12.6px;
+    z-index: 10; }
+
+@keyframes ghost {
+  0%,100% {
+    transform: rotate(5deg); }
+  50% {
+    transform: rotate(-5deg); } }
+#world {
+  height: 600px;
+  width: 630px;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  overflow: hidden; }
+
+h4 {
+  font-family: "pixelmix", sans-serif;
+  color: #fff;
+  padding: 10px;
+  display: inline-block; }
+
+#ghost_1 {
+  top: 390px;
+  left: 270px; }
+  #ghost_1:before {
+    background-color: #ff8000;
+    box-shadow: -3px -10.5px 0 -2.1px #000, 3px -10.5px 0 -2.1px #000, -3px -10.5px 0 0 #fff, 3px -10.5px 0 0 #fff, 6px 0 0 0 #ff8000, -6px 0 0 0 #ff8000, 0 -9px 0 7.5px #ff8000; }
+
+#ghost_2 {
+  top: 360px;
+  left: 270px; }
+  #ghost_2:before {
+    background-color: #0011ff;
+    box-shadow: -3px -10.5px 0 -2.1px #000, 3px -10.5px 0 -2.1px #000, -3px -10.5px 0 0 #fff, 3px -10.5px 0 0 #fff, 6px 0 0 0 #0011ff, -6px 0 0 0 #0011ff, 0 -9px 0 7.5px #0011ff; }
+
+#ghost_3 {
+  top: 390px;
+  left: 330px; }
+  #ghost_3:before {
+    background-color: #00ffac;
+    box-shadow: -3px -10.5px 0 -2.1px #000, 3px -10.5px 0 -2.1px #000, -3px -10.5px 0 0 #fff, 3px -10.5px 0 0 #fff, 6px 0 0 0 #00ffac, -6px 0 0 0 #00ffac, 0 -9px 0 7.5px #00ffac; }
+
+#ghost_4 {
+  top: 360px;
+  left: 330px; }
+  #ghost_4:before {
+    background-color: #ff0a5c;
+    box-shadow: -3px -10.5px 0 -2.1px #000, 3px -10.5px 0 -2.1px #000, -3px -10.5px 0 0 #fff, 3px -10.5px 0 0 #fff, 6px 0 0 0 #ff0a5c, -6px 0 0 0 #ff0a5c, 0 -9px 0 7.5px #ff0a5c; }
+
+.pacman_life {
+  display: block;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #F8F921;
+  overflow: hidden;
+  box-sizing: border-box;
+  border: 2px solid #000;
+  z-index: 2; }
+  .pacman_life:before {
+    content: "";
+    display: block;
+    position: relative;
+    left: 12px;
+    top: 7.5px;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background-color: black; }
+  .pacman_life:after {
+    content: "";
+    display: block;
+    position: relative;
+    box-sizing: border-box;
+    top: -18.75px;
+    left: -15px;
+    width: 0;
+    height: 0;
+    border: 30px solid transparent;
+    border-right: 30px solid #000;
+    z-index: 4; }
+
+/*# sourceMappingURL=main.css.map */
